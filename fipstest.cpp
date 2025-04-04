@@ -632,7 +632,7 @@ void DoDllPowerUpSelfTest()
 
 NAMESPACE_END
 
-#ifdef CRYPTOPP_WIN32_AVAILABLE
+#if defined(CRYPTOPP_WIN32_AVAILABLE) && defined(CRYPTOPP_IS_DLL)
 
 // DllMain needs to be in the global namespace
 BOOL APIENTRY DllMain(HANDLE hModule,
@@ -644,9 +644,9 @@ BOOL APIENTRY DllMain(HANDLE hModule,
 		CryptoPP::s_hModule = (HMODULE)hModule;
 		CryptoPP::DoDllPowerUpSelfTest();
 	}
-    return TRUE;
+	return TRUE;
 }
 
-#endif	// #ifdef CRYPTOPP_WIN32_AVAILABLE
+#endif	// #if defined(CRYPTOPP_WIN32_AVAILABLE) && defined(CRYPTOPP_IS_DLL)
 
 #endif	// #ifndef CRYPTOPP_IMPORTS
